@@ -1,0 +1,6 @@
+backend/__pycache__/
+backend/backend/__pycache__/
+backend/env
+backend/cron_log
+backend/lib
+backend/bin/

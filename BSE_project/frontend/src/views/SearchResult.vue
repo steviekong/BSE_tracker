@@ -4,7 +4,7 @@
     <div class="w-3/5 h-3/5">
       <div>
         <p class="font-serif text-5xl text-pink-500">
-          -1dha
+          -1Dha
         </p>
         <p class="text-2xl">We actually pay you to invest</p>
       </div>
@@ -22,7 +22,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Home',
+  name: 'Result',
   data() {
     return { search: '' };
   },

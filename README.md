@@ -4,6 +4,8 @@ Simple app to display latest BSE Bhavcopy (Equity) data. Allows you to search da
 
 Hosted at http://159.89.166.26/
 
+![Screenshot](https://i.ibb.co/4ptWzHp/Screen-Shot-2021-04-18-at-12-28-57-AM.png)
+
 ## Getting started
 
 This development setup has only been tested on OSX 11.2.3
@@ -56,7 +58,7 @@ You should see something like this as the output
 
 This cronjob will run at 18:00 IST daily assuming system time is set to accurate IST time.
 
-10. Make sure you have redis server running
+10. Make sure you have redis server running locally on port 6379.
 
 11. Start django server
     `python3 manage.py runserver`

@@ -8,7 +8,7 @@
         </p>
         <p class="text-2xl">Search for the latest BSE Bhavcopy (Equity) data</p>
       </div>
-      <div class="mt-8">
+      <div class="mt-8 w-3/4">
         <SearchBar @input="onInputChange" @search="onSearchClick"/>
       </div>
       <button @click="onSearchClick" class="w-52 h-12 border bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-lg text-white mt-10 text-xl font-sans hover:opacity-50">

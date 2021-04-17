@@ -12,6 +12,8 @@ from django.template import loader
 redis_connection = redis.Redis(host='localhost', port=6379, db=0)
 internal_error = JsonResponse({"error": "Internal server error"}, status=500)
 
+# return vue static files
+
 
 def index(request):
     template = loader.get_template('index.html')
@@ -23,7 +25,9 @@ def index(request):
 def search_by_name(request):
     try:
         search_string = request.GET["search_string"].upper()
-        keys = redis_connection.keys(search_string + "*")
+        keys = []
+        for key in redis_connection.scan_iter(match=search_string + '*'):
+            keys.append(key)
         search_result = []
         for key in keys:
             value = json.loads(redis_connection.get(key))

@@ -6,10 +6,13 @@ import csv
 import json
 import os
 
+# Cronjob to retrieve bhav data, parse and insert into redis
+
 
 def get_bahv_add_to_redis() -> None:
     redis_connection = redis.Redis(host='localhost', port=6379, db=0)
     current_date = date.today()
+    # Handles cases when data is fetched on weekends
     if current_date.weekday() == 5:
         current_date = current_date - timedelta(days=1)
     elif current_date.weekday() == 6:
@@ -17,6 +20,7 @@ def get_bahv_add_to_redis() -> None:
     current_date = current_date.strftime("%d%m%y")
     file_name = "EQ" + current_date + "_CSV.ZIP"
     try:
+        # Fake useragent header to avoid 403 response
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         BSE_zip_file = requests.get(
@@ -26,6 +30,7 @@ def get_bahv_add_to_redis() -> None:
         with zipfile.ZipFile(file_name, "r") as zip_ref:
             zip_ref.extractall(".")
 
+        # Convert csv rows into json string and insert into redis with the name as the key
         with open("EQ" + current_date+".CSV", encoding='utf-8') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:

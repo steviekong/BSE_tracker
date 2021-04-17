@@ -1,14 +1,20 @@
 import requests
-from datetime import date
+from datetime import date, timedelta
 import zipfile
 import redis
 import csv
 import json
+import os
 
 
 def get_bahv_add_to_redis() -> None:
     redis_connection = redis.Redis(host='localhost', port=6379, db=0)
-    current_date = date.today().strftime("%d%m%y")
+    current_date = date.today()
+    if current_date.weekday() == 5:
+        current_date = current_date - timedelta(days=1)
+    elif current_date.weekday() == 6:
+        current_date = current_date - timedelta(days=2)
+    current_date = current_date.strftime("%d%m%y")
     file_name = "EQ" + current_date + "_CSV.ZIP"
     try:
         headers = {
@@ -27,6 +33,9 @@ def get_bahv_add_to_redis() -> None:
                                    "High": row["HIGH"].rstrip(), "Low": row["LOW"].rstrip(), "Close": row["CLOSE"].rstrip()})
                 key = row["SC_NAME"].rstrip()
                 redis_connection.set(key, data)
+        os.remove(file_name)
+        os.remove("EQ" + current_date+".CSV")
+
         print("Successfully parse and inserted BSE data for " + current_date)
 
     except requests.ConnectionError:

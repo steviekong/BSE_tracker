@@ -10,6 +10,11 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.4",
+    "i": "^0.3.6",
+    "js-file-download": "^0.4.12",
+    "json2csv": "^5.0.6",
+    "npm": "^7.10.0",
     "postcss-loader": "^3.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"

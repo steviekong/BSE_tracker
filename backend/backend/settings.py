@@ -136,6 +136,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('* * * * *', 'backend.cron.get_bahv_add_to_redis',
-     ">> /Users/sidharthrejikumar/interview/zerodha/BSE_project/backend/cron.log")
+    ('* * * * *', 'backend.cron.get_bahv_add_to_redis')
 ]

@@ -6,9 +6,16 @@ import json
 import pandas as pd
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
+from django.template import loader
 
 redis_connection = redis.Redis(host='localhost', port=6379, db=0)
 internal_error = JsonResponse({"error": "Internal server error"}, status=500)
+
+
+def index(request):
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 
 # Search By name

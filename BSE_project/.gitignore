@@ -4,3 +4,5 @@ backend/env
 backend/cron_log
 backend/lib
 backend/bin/
+backend/backend/static/*
+backend/backend/templates/index.html

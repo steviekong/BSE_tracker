@@ -26,7 +26,7 @@ export default Vue.extend({
         search_result: this.search_result,
       };
       axios
-        .post('http://localhost:8000/download', data, { responseType: 'blob' })
+        .post(`${process.env.VUE_APP_BACKEND_URL}/download`, data, { responseType: 'blob' })
         .then((response) => { FileDownload(response.data, 'BSE_data.csv'); });
     },
   },

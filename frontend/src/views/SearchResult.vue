@@ -72,7 +72,7 @@ export default Vue.extend({
     },
     searchQuery() {
       axios
-        .get('http://localhost:8000/search', {
+        .get(`${process.env.VUE_APP_BACKEND_URL}/search`, {
           params: {
             search_string: this.$route.params.searchResult,
           },

@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  publicPath: "/static",
+  publicPath: "/",
   outputDir: path.resolve(__dirname, "../", "backend", "backend", "static"),
   indexPath: path.resolve(
     __dirname,

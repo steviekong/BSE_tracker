@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.template import loader
+from .cron import get_bahv_add_to_redis
 
 redis_connection = redis.Redis(host='localhost', port=6379, db=0)
 internal_error = JsonResponse({"error": "Internal server error"}, status=500)
@@ -24,6 +25,10 @@ def index(request):
 @require_http_methods(["GET"])
 def search_by_name(request):
     try:
+        # If redis is empty fetch latest bhav data
+        if not redis_connection.get("TATASTLBSL"):
+            get_bahv_add_to_redis()
+
         search_string = request.GET["search_string"].upper()
         keys = []
         for key in redis_connection.scan_iter(match=search_string + '*'):

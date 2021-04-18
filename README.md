@@ -75,26 +75,8 @@ The app should be running on http://localhost:8000 .
 
 ### Populating data
 
-You might notice that there is no data when you search a for a company. That is because the cron job only populates the data at 18:00 daily.
+If the cache is empty (should only occur the first time) the search function automatically runs a routine to get populate redis with the latest bahv data.
 
-If you want to populate the data quickly you can change the cron job to run every minute by doing the following
-
-1. Edit `settings.py` located at `backend/backend/settings.py`.
-
-2. Change line 138 to
-
-```python
-CRONJOBS = [
-    ('* * * * *', 'backend.cron.get_bahv_add_to_redis')
-]
-```
-
-3. Remove the existing crontab
-   `python3 manage.py crontab remove`
-
-4. Add the updated crontab
-   `python3 manage.py crontab add`
-
-5. Wait about a minute and redis should have populated all the required data.
+After that the data with be refreshed by the cron job running at 18:00 daily.
 
 **Have fun! 🙂 🎉**

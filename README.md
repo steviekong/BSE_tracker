@@ -15,7 +15,7 @@ This development setup has only been tested on OSX 11.2.3
 - node v14.\*
 - npm v6.14.\*
 - python 3.9 \*
-- pip pip 21.0.1 \*
+- pip 21.0.1 \*
 - Redis server 6.2.1
 
 ### Directory structure
@@ -75,8 +75,12 @@ The app should be running on http://localhost:8000 .
 
 ### Populating data
 
-If the cache is empty (should only occur the first time) the search function automatically runs a routine to get populate redis with the latest bahv data.
+If the redis is empty (should only occur the first time) the search function automatically runs a routine to populate redis with the latest bahv data.
 
 After that the data with be refreshed by the cron job running at 18:00 daily.
+
+#### File store
+
+Temporary files like zip and csv files are stored on `/tmp` so windows users might have issues running this project.
 
 **Have fun! 🙂 🎉**

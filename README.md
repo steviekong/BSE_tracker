@@ -4,7 +4,7 @@ Simple app to display latest BSE Bhavcopy (Equity) data. Allows you to search da
 
 Built with Django, VueJs and Redis.
 
-Hosted at http://159.89.166.26/
+Hosted at http://1dha.srejikumar.com
 
 ![Screenshot](https://i.ibb.co/4ptWzHp/Screen-Shot-2021-04-18-at-12-28-57-AM.png)
 
